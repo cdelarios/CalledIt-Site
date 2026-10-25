@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["5TX3JCMZHG.com.dalcor.CalledIt"],
+        "components": [
+          {
+            "/": "/i/*",
+            "comment": "Invite links: https://calledit.dalcor.com/i/<token>"
+          }
+        ]
+      }
+    ]
+  }
+}
