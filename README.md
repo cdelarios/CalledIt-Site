@@ -14,6 +14,9 @@ Files:
   shares since CMD-003). A real file served 200, so Messages shows a preview card from its Open
   Graph tags; GitHub Pages' 404 page gets no preview. It reads the token from the query and offers
   the `calledit://` link as a second way in.
+- `i/pool/index.html` — the pool invite page (CMD-008), at `https://calledit.dalcor.com/i/pool/?t=<token>`.
+  A second real file under `/i/`, so the association file's `/i/*` pattern already opens the app and
+  the page carries its own preview copy; its button is `calledit://pool/<token>`.
 - `og.png` — the 1200×630 preview image both pages name: the real app icon on the house background, rendered by `tools/render-og.swift` (CMD-003.01; re-run it when the icon or the copy changes). The pages name it as `og.png?v=N` — bump `N` when the image changes, because Messages and LinkPresentation cache a preview per page URL and the invite page's URL never changes.
 - `404.html` — GitHub Pages serves this for every path that is not a file. It still handles the
   older `/i/<token>` links (the app accepts both forms); anything else is a plain not-found.
