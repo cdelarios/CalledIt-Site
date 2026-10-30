@@ -17,7 +17,12 @@ Files:
 - `i/pool/index.html` — the pool invite page (CMD-008), at `https://calledit.dalcor.com/i/pool/?t=<token>`.
   A second real file under `/i/`, so the association file's `/i/*` pattern already opens the app and
   the page carries its own preview copy; its button is `calledit://pool/<token>`.
-- `og.png` — the 1200×630 preview image both pages name: the real app icon on the house background, rendered by `tools/render-og.swift` (CMD-003.01; re-run it when the icon or the copy changes). The pages name it as `og.png?v=N` — bump `N` when the image changes, because Messages and LinkPresentation cache a preview per page URL and the invite page's URL never changes.
+- `i/title/index.html` — the shared-title page (CMD-010), at `https://calledit.dalcor.com/i/title/?m=movie&id=<id>`
+  (or `m=tv`). A third real file under `/i/`; its button is `calledit://title/<media>/<id>`.
+- `icon.png` — the real app icon, 512 px, masked to the iOS corner radius (CMD-014): the mark at the top of every page and the favicon. Rendered with `swift tools/render-launch-icon.swift web/icon.png`.
+- `apple-touch-icon.png` — the same icon, 180 px, opaque and square, because iOS applies its own mask for Add to Home Screen. Made with `sips -z 180 180 CalledIt/Assets.xcassets/AppIcon.appiconset/E-envelope-card-star.png --out web/apple-touch-icon.png`. Re-make both when the icon changes. Pages name both by root-absolute path, because `404.html` is served at any depth.
+- `.gitignore` — keeps `.DS_Store` out of this repository.
+- `og.png` — the 1200×630 preview image every page but `404.html` names: the real app icon on the house background, rendered by `tools/render-og.swift` (CMD-003.01; re-run it when the icon or the copy changes). The pages name it as `og.png?v=N` — bump `N` when the image changes, because Messages and LinkPresentation cache a preview per page URL and the invite page's URL never changes.
 - `404.html` — GitHub Pages serves this for every path that is not a file. It still handles the
   older `/i/<token>` links (the app accepts both forms); anything else is a plain not-found.
 - `.well-known/apple-app-site-association` — Universal Links. Must be served over HTTPS, no
