@@ -9,9 +9,20 @@
   <link rel="icon" type="image/png" href="/icon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <!-- GitHub Pages serves this page for every path that is not a file. For
-       /i/<token> it is the invite page; for anything else, a plain not-found.
-       Smart App Banner, once the App Store ID exists:
-       <meta name="apple-itunes-app" content="app-id=XXXXXXXXX"> -->
+       /i/<token> it is the invite page; for anything else, a plain not-found. -->
+  <meta name="apple-itunes-app" content="app-id=6826726436">
+  <script>
+    (function () {
+      // Smart App Banner (CMD-016): Open hands the app this page's own URL,
+      // which the app parses as it parses the universal link. Built from
+      // the validated parts, never from location.href.
+      var match = location.pathname.match(/\/i\/([A-Za-z0-9_-]{16})\/?$/);
+      if (match) {
+        document.querySelector('meta[name="apple-itunes-app"]').setAttribute('content',
+          'app-id=6826726436, app-argument=https://calledit.dalcor.com/i/' + match[1]);
+      }
+    })();
+  </script>
   <style>
     :root {
       --bg: #13140E; --surface: #1E1F18; --surface2: #272820;
@@ -35,6 +46,8 @@
       text-decoration: none; padding: 14px 22px; border-radius: 12px; }
     .btn.secondary { background: var(--surface2); color: var(--text); }
     .muted { color: var(--text3); font-size: 14px; }
+    .badge { display: inline-block; }
+    .badge img { display: block; height: 48px; width: auto; }
     footer { margin-top: 48px; color: var(--text3); font-size: 13px; }
     .hidden { display: none; }
   </style>
@@ -46,7 +59,7 @@
   <p class="tag">Track the season with friends.</p>
 
   <section id="invite" class="hidden">
-    <p><strong>A friend invited you to Called It</strong> — an iPhone app for awards season. Keep a list of the contenders, mark what you've seen, see which friends have seen them too, and call the winners when nominations land.</p>
+    <p><strong>A friend invited you to Called It</strong> — an app for iPhone and iPad, made for awards season. Keep a list of the contenders, mark what you've seen, see which friends have seen them too, and call the winners when nominations land.</p>
     <div class="card">
       <h2>Already have the app?</h2>
       <p>Tap below and you'll be friends right away.</p>
@@ -55,7 +68,7 @@
     <div class="card">
       <h2>Not installed yet?</h2>
       <p>Install Called It, sign in with Apple, pick a username — then come back and tap this link again.</p>
-      <p class="muted">Called It is in private testing. The App Store link will appear here when it's released.</p>
+      <p><a class="badge" href="https://apps.apple.com/app/id6826726436"><img src="/app-store-badge.svg" width="144" height="48" alt="Download on the App Store"></a></p>
     </div>
   </section>
 
@@ -66,6 +79,7 @@
 
   <footer>
     This product uses the TMDB API but is not endorsed or certified by TMDB.<br>
+    Apple, the Apple logo, iPhone, and iPad are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.<br>
     © Dalcor Software
   </footer>
 </main>

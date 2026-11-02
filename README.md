@@ -1,7 +1,8 @@
 # Called It — site
 
-The static site at **https://calledit.dalcor.com**: the landing page, the invite page, and Apple's
-`.well-known/apple-app-site-association` file that makes invite links open the app.
+The static site at **https://calledit.dalcor.com**: the landing page, the invite pages, the App Store badge and
+Smart App Banner for people without the app, and Apple's `.well-known/apple-app-site-association` file that makes
+invite links open the app.
 
 **The source of truth is `web/` in the private `cdelarios/CalledIt` repository.** This public
 repository (`cdelarios/CalledIt-Site`) is a mirror published by GitHub Pages. Do not edit it here —
@@ -22,6 +23,12 @@ Files:
 - `icon.png` — the real app icon, 512 px, masked to the iOS corner radius (CMD-014): the mark at the top of every page and the favicon. Rendered with `swift tools/render-launch-icon.swift web/icon.png`.
 - `apple-touch-icon.png` — the same icon, 180 px, opaque and square, because iOS applies its own mask for Add to Home Screen. Made with `sips -z 180 180 CalledIt/Assets.xcassets/AppIcon.appiconset/E-envelope-card-star.png --out web/apple-touch-icon.png`. Re-make both when the icon changes. Pages name both by root-absolute path, because `404.html` is served at any depth.
 - `.gitignore` — keeps `.DS_Store` out of this repository.
+- `app-store-badge.svg` — Apple's black "Download on the App Store" badge (CMD-016), a byte-exact copy of the
+  file App Store Marketing Tools serves (`https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us`),
+  never modified. Every page draws it 48 px tall, linking `https://apps.apple.com/app/id6826726436`, and carries Apple's
+  credit line in its footer. Every page also carries the Smart App Banner tag `<meta name="apple-itunes-app">` with
+  `app-id=6826726436`; on the three link pages and `404.html` a head script adds `app-argument=<the page's own https URL>`,
+  built from the validated token or title, so the banner's Open hands the app the same URL the universal link would.
 - `og.png` — the 1200×630 preview image every page but `404.html` names: the real app icon on the house background, rendered by `tools/render-og.swift` (CMD-003.01; re-run it when the icon or the copy changes). The pages name it as `og.png?v=N` — bump `N` when the image changes, because Messages and LinkPresentation cache a preview per page URL and the invite page's URL never changes.
 - `404.html` — GitHub Pages serves this for every path that is not a file. It still handles the
   older `/i/<token>` links (the app accepts both forms); anything else is a plain not-found.
