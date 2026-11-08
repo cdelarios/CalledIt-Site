@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    { "source": "/i/title", "destination": "/api/title" },
+    { "source": "/i/title/", "destination": "/api/title" },
+    { "source": "/i/title-check", "destination": "/api/title" },
+    { "source": "/i/title-check/", "destination": "/api/title" },
+    { "source": "/i/:token([A-Za-z0-9_-]{16})", "destination": "/404.html" }
+  ],
+  "headers": [
+    {
+      "source": "/.well-known/apple-app-site-association",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }]
+    }
+  ]
+}

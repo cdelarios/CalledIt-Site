@@ -8,8 +8,10 @@
   <meta name="theme-color" content="#13140E">
   <link rel="icon" type="image/png" href="/icon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <!-- GitHub Pages serves this page for every path that is not a file. For
-       /i/<token> it is the invite page; for anything else, a plain not-found. -->
+  <!-- The host serves this page for every path that is not a file (Vercel
+       since CMD-022; GitHub Pages before). For the legacy /i/<token> it is the
+       invite page — vercel.json rewrites that form here with status 200, so it
+       previews; for anything else, a plain not-found. -->
   <meta name="apple-itunes-app" content="app-id=6826726436">
   <script>
     (function () {

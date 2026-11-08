@@ -34,4 +34,10 @@ Files:
   older `/i/<token>` links (the app accepts both forms); anything else is a plain not-found.
 - `.well-known/apple-app-site-association` — Universal Links. Must be served over HTTPS, no
   redirects, at exactly this path. `.nojekyll` keeps GitHub Pages from skipping the dot-directory.
+- `vercel.json` and `api/title.js` (CMD-022) — the host's configuration for Vercel and the shared-title
+  function: `/i/title/?m=&id=` is rewritten to the function, which asks TMDB for the title and answers the
+  page with the title and its poster in its Open Graph tags (the generic card for anything else, always
+  200); `/i/<token>` is rewritten to `404.html` with status 200; the association file gets
+  `Content-Type: application/json`. The TMDB token is `TMDB_READ_ACCESS_TOKEN` in Vercel's environment,
+  never in this repository. Ignored by GitHub Pages, which serves them as plain files.
 - `CNAME` — the custom domain, kept here so a sync never removes it from the Pages settings.
